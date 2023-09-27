@@ -1,5 +1,5 @@
 > [!WARNING]
-> O aplicativo possui um erro nas transições entre páginas, ao clicar para entrar o aplicativo vai para a home, porém, não retorna e nem avança.
+> O aplicativo possui um erro nas transições entre páginas, ao clicar para entrar, o aplicativo vai para a home, porém, não retorna e nem avança.
 
 
 O aplicativo foi desenvolvido para a N1 da matéria de Desenvolvimento de Dispositivos Móveis.
