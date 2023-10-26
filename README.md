@@ -1,5 +1,32 @@
-> [!WARNING]
-> O aplicativo possui um erro nas transições entre páginas, ao clicar para entrar, o aplicativo vai para a home, porém, não retorna e nem avança.
+> [!IMPORTANT]
+> O aplicativo foi atualizado para receber e enviar dados com o FireBase.
+>[!NOTE]
+>Segue as informações do que foi atualizado para a segunda versão do aplicativo.
+
+
+
+· Transferência de dinheiro com atualização no banco
+
+    O usuário pode fazer uma transferência para um contato criado, o valor transferido será descontado do saldo total do usuário 
+
+ ![transferencia](https://github.com/Alchini/App_Vendas_Flutter/assets/108496754/158f9561-5b6e-414a-a168-775bf01048ee)
+
+
+· Adição e remoção de um contato   
+
+
+    O usuário pode adicionar um contato que ficará salvo no banco de dados, o usuário também poderá remover este usuário pelo próprio aplicativo
+
+ ![contato](https://github.com/Alchini/App_Vendas_Flutter/assets/108496754/b52d5e3c-08cd-4741-b04b-4538ff89444e)
+ 
+· Loja
+
+    Foi adicionado uma loja simples no aplicativo, vale ressaltar que a loja não tem conexão com o FireBase
+
+    
+
+
+
 
 
 O aplicativo foi desenvolvido para a N1 da matéria de Desenvolvimento de Dispositivos Móveis.
@@ -91,5 +118,3 @@ Como executar/importar o projeto:
     · Abra o arquivo pubspec.yaml e clique em pub get para que as dependências (pacotes) utilizadas no projeto sejam carregadas;
     
     · Execute a aplicação.
-
-
