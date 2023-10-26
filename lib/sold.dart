@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:n1_dispositivos_moveis/home.dart';
+import 'package:n1_dispositivos_moveis/user_balance.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,6 +16,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
 class Sold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,12 +27,37 @@ class Sold extends StatelessWidget {
           Container(
             color: const Color.fromRGBO(22, 48, 81, 1),
           ),
-          const Positioned(
-            top: 20,
-            left: 20,
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              color: const Color.fromARGB(252, 252, 252, 252),
+              onPressed: () { 
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      final userBalance = Provider.of<UserBalance>(context, listen: false);
+                      double saldo = userBalance.balance;
+                      return HomeScreen(saldo);
+                    },
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0); // aqui ta sendo definida a posição inicial da tela
+                      const end = Offset.zero; // aqui é a posição final da tela
+                      const curve = Curves.easeInOut; // aqui ele define uma curva?? pra animação
+
+                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                      var offsetAnimation = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
+                  )
+                );
+              },
             ),
           ),
           const Positioned(
@@ -60,7 +90,7 @@ class Sold extends StatelessWidget {
             right: 0,
             child: Center(
               child: Image.asset(
-                'assets/images/MoneyTag.png', // Substitua pelo caminho da sua imagem
+                'assets/images/MoneyTag.png',
                 width: 200,
                 height: 200,
               ),

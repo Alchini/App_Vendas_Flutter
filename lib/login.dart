@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:n1_dispositivos_moveis/home.dart';
+import 'package:n1_dispositivos_moveis/user_balance.dart';
+import 'package:provider/provider.dart';
 
-
-void main() {
-  runApp(MyApp());
-}
 
 
 
@@ -105,45 +103,43 @@ class Login extends StatelessWidget {
             bottom: 90.0,
             left: 20.0,
             right: 40.0,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
-                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0); // aqui ta sendo definida a posição inicial da tela
-                      const end = Offset.zero; // aqui é a posição final da tela
-                      const curve = Curves.easeInOut; // aqui ele define uma curva?? pra animação
-
-                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-                      var offsetAnimation = animation.drive(tween);
-
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  )
+            child: Builder(
+              builder: (context) {
+                return ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return Builder(
+                            builder: (context) {
+                              final userBalance = Provider.of<UserBalance>(context, listen: false);
+                              double saldo = userBalance.balance;
+                              return HomeScreen(saldo);
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(94, 255, 255, 255),
+                    foregroundColor: const Color.fromARGB(218, 255, 255, 255),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  child: Container(
+                    width: 100,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Comece agora",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(94, 255, 255, 255),
-                foregroundColor: const Color.fromARGB(218, 255, 255, 255),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: Container(
-                width: 100,
-                height: 50,
-                alignment: Alignment.center,
-                child: const Text(
-                  "Comece agora",
-                  style: TextStyle(fontSize: 15),
-                )
-              )
             ),
           ),
         ],

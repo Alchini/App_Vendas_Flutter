@@ -118,5 +118,3 @@ Como executar/importar o projeto:
     · Abra o arquivo pubspec.yaml e clique em pub get para que as dependências (pacotes) utilizadas no projeto sejam carregadas;
     
     · Execute a aplicação.
-
-
